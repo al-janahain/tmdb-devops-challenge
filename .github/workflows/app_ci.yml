@@ -10,7 +10,60 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
     strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'  # Enable caching of Yarn dependencies
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Install Dependencies
+      run: |
+        yarn install --frozen-lockfile
+
+    - name: Setup ESLint
+      run: |
+        yarn add eslint eslint-plugin-react --dev
+        npx eslint --init
+
+    - name: Lint
+      run: yarn lint
+
+    - name: Run Tests
+      run: yarn test --passWithNoTests
+
+    - name: Build
+      run: yarn build
+
+    - name: Docker Build and Push
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: mohassan844/tmdb-app:latest
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
       matrix:
         node-version: [20.x]
 
