@@ -26,7 +26,7 @@ jobs:
       run: npm install -g yarn
 
     - name: Install Dependencies
-      run: yarn install --frozen-lockfile /// &&  yarn add eslint eslint-plugin-react --dev && npx eslint --init
+      run:  yarn add eslint eslint-plugin-react --dev && yarn install --frozen-lockfile /// &&  yarn add eslint eslint-plugin-react --dev && npx eslint --init
 
     - name: Lint
       run: yarn lint
