@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'  # Enables caching of Yarn dependencies
+        # cache: 'yarn'  # Enables caching of Yarn dependencies
 
     - name: Install Yarn
       run: npm install -g yarn
