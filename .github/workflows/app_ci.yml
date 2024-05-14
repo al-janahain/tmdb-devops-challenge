@@ -23,14 +23,15 @@ jobs:
         registry-url: 'https://registry.hub.docker.com'
         registry-login-server: 'docker.io'
 
-    - name: Cache node modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
+    # - name: Cache node modules
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: ~/.npm
+    #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-node-
+    - name: Clear npm cache
+      run: npm cache clean --force
     - name: Install Dependencies
       run: npm install
 
