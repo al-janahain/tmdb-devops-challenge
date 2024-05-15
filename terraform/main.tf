@@ -6,7 +6,7 @@ terraform {
   backend "s3" {
     bucket = "tmdb-app-terraform-backend" # Replace with your S3 bucket name
     key    = "terraform/state"           # Path to the state file inside the bucket
-    region = var.region
+    region = "us-east-1"                 # Hardcode the region value
   }
 }
 
