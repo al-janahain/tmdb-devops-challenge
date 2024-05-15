@@ -19,14 +19,16 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.subnet_cidr
-  availability_zone = var.availability_zone
+  vpc_id                   = aws_vpc.main.id
+  cidr_block               = var.subnet_cidr
+  availability_zone        = var.availability_zone
+  map_public_ip_on_launch  = true # Ensure instances in this subnet get public IPs
 
   tags = {
     Name = var.subnet_name
   }
 }
+
 
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
@@ -48,7 +50,9 @@ resource "aws_route_table_association" "main" {
 
 resource "aws_security_group" "main" {
   vpc_id = aws_vpc.main.id
-
+  tags = {
+    Name = "tmdb-security-group" # Add a name tag
+  }
   ingress {
     from_port   = 22
     to_port     = 22
