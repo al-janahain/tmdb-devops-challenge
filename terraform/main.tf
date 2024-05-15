@@ -89,7 +89,7 @@ resource "aws_instance" "main" {
   subnet_id     = aws_subnet.main.id
   vpc_security_group_ids = [aws_security_group.main.id] # Use security group IDs instead
   key_name      = aws_key_pair.main.key_name
-
+  associate_public_ip_address = true # Ensure the instance gets a public IP
   user_data = file("user_data.sh")
 
   tags = {
