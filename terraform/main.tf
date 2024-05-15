@@ -84,7 +84,7 @@ resource "aws_key_pair" "main" {
 }
 
 resource "aws_instance" "main" {
-  ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI (change as needed)
+  ami           = "ami-0bb84b8ffd87024d8" # Amazon Linux 2023 AM (change as needed)
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.main.id
   security_groups = [aws_security_group.main.name]
