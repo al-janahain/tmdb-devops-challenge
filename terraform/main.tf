@@ -84,10 +84,10 @@ resource "aws_key_pair" "main" {
 }
 
 resource "aws_instance" "main" {
-  ami           = "ami-0bb84b8ffd87024d8" # Amazon Linux 2023 AM (change as needed)
+  ami           = "ami-0bb84b8ffd87024d8" # Amazon Linux 2023 AMI (change as needed)
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.main.id
-  security_groups = [aws_security_group.main.name]
+  vpc_security_group_ids = [aws_security_group.main.id] # Use security group IDs instead
   key_name      = aws_key_pair.main.key_name
 
   user_data = file("user_data.sh")
