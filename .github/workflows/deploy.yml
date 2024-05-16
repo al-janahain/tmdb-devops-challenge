@@ -1,9 +1,9 @@
 name: Deploy Application
 
 on:
-#   push:
-#     branches:
-#       - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,9 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Install AWS CLI
-      uses: aws-actions/setup-aws-cli@v1
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y awscli
 
     - name: Collect EC2 IPs
       id: collect-ec2-ips
