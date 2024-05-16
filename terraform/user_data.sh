@@ -5,10 +5,14 @@ sudo yum update -y
 # Install Docker
 sudo amazon-linux-extras install docker -y
 sudo service docker start
+# make docker  autostart
+sudo chkconfig docker on
 sudo usermod -a -G docker ec2-user
 
-# Install Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# docker-compose (latest version)
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+# Fix permissions after download
 sudo chmod +x /usr/local/bin/docker-compose
-
+# Verify success
+docker-compose version
 
