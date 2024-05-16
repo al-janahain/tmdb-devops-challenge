@@ -6,6 +6,10 @@
     compose_file_path: /home/ec2-user/docker-compose.yml
     reverseproxy_path: /home/ec2-user/reverseproxy.conf
   tasks:
+    - name: stop all containers
+      command: docker-compose -f "{{ compose_file_path }}" down 
+      args:
+        chdir: /home/ec2-user
     - name: copy docker-compose.yml
       copy:
         src: ../docker-compose.yml
