@@ -5,6 +5,7 @@ yarn-error.log
 
 # Git and version control
 .git
+.github
 .gitignore
 
 # Build output
@@ -21,3 +22,9 @@ tmp
 # OS files
 .DS_Store
 Thumbs.db
+####
+private_key
+public_key.pem
+terraform
+ansible
+nginx
