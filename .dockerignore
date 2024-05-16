@@ -27,4 +27,3 @@ private_key
 public_key.pem
 terraform
 ansible
-nginx
