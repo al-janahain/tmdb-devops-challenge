@@ -8,7 +8,7 @@
   tasks:
     - name: Create docker-compose.yml
       copy:
-        src: ./docker-compose.yml
+        src: ../docker-compose.yml
         dest: "{{ compose_file_path }}"
         owner: ec2-user
         group: ec2-user

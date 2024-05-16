@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  collect-ec2-ips:
+  collect-ec2-ips-and-run-playbook:
     runs-on: ubuntu-latest
 
     steps:
