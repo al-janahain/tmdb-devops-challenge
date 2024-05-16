@@ -2,13 +2,21 @@ version: '3'
 
 services:
   web:
-    image: mohassan844/tmdb_app:latest # Replace with your Docker Hub username and app name
+    react_app: mohassan844/tmdb_app:latest # Replace with your Docker Hub username and app name
     # build:
     #   context: .
     #   dockerfile: Dockerfile
     ports:
-      - "80:80"
-    volumes:
-      - ./nginx/reactapp.conf:/etc/nginx/conf.d/default.conf
+      - "8080:8080"
     environment:
       - NODE_ENV=production
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./reverseproxy.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - react_app

@@ -4,16 +4,22 @@
   become: yes
   vars:
     compose_file_path: /home/ec2-user/docker-compose.yml
-
+    reverseproxy_path: /home/ec2-user/reverseproxy.conf
   tasks:
-    - name: Create docker-compose.yml
+    - name: copy docker-compose.yml
       copy:
         src: ../docker-compose.yml
         dest: "{{ compose_file_path }}"
         owner: ec2-user
         group: ec2-user
         mode: '0644'
-
+    - name: copy nginx configration
+      copy:
+        src: ../nginx/reverseproxy.conf
+        dest: "{{ reverseproxy_path }}"
+        owner: ec2-user
+        group: ec2-user
+        mode: '0644'
     - name: Pull the latest images and run the containers
       command: docker-compose -f "{{ compose_file_path }}" up -d
       args:
