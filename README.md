@@ -40,6 +40,9 @@ Step 2:- Deploy app
 
     all that done by GitHub workflow(.github/workflows/deploy.yml) link https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/deploy.yml
 
+
+    you can chech app websit at http://107.20.9.82/ 
+
 ###### Some of Taske 4 ######
 
     I created key pairs and uploaded them in the repo (private_key,public_key.pem) also I used them in auto-created EC2 KeyPair and attached it to all EC2s automatically.
@@ -56,6 +59,8 @@ Question Number 2:- N VMs
 
 
 -----------
+please tell me once you checked app websit at http://107.20.9.82/ to delete all infr from the cloud
+
 Thanks Very much, and I hope to see you in a technical interview soon.
 
 Mohamed Hassan
