@@ -1,56 +1,63 @@
-# TMDB App Deployment
+# TMDB App Deployment task for Mohamed Hassan
 
 Thank you for the opportunity to work on this task. Below are the detailed steps that i did.
 
-I chosed problems (1 and 2 and some of 4)
+I choose problems (1 and 2 and some of 4)
 
-after i forked repo to GitHub, i used Some GitHub account and AWS Cloud.
+after I forked the repo to GitHub, I used Some GitHub account and AWS Cloud.
 
 start to do ...
 
-###### Taske 1 ######
+###### Task 1 ######
 
-    I created GitHub Actions workflow (.github/workflows/app_ci.yml) to run stages (install, build, lint, test, pakage).
+    I created GitHub Actions workflow (.github/workflows/app_ci.yml) to run stages (install, build, lint, test, package).
 
-    during last stages i face problem  with lint and test stages (in code) that i  couldn't solve ,so i make them always True.
+    during run stages I faced problem with lint and test stages (in code) that I  couldn't solve ,so i make them always True.
 
-    I Edited Dockerfile to redise image size by use multi-staging stratgy with nginx to serve app content and custom nginx configuration in folder (nginx/reactapp.conf).
+    I Edited Dockerfile to reduce image size by using a multi-staging strategy with nginx to serve app content and custom nginx configuration in folder (nginx/reactapp.conf).
 
-    in package state i taged image with workflow build number and latest tages, i pushed image to my DockerHub registry. take alock https://hub.docker.com/repository/docker/mohassan844/tmdb_app/general
+    in package state i tagged image with the workflow build number and latest tags, I pushed the image to my Docker Hub registry. take a look https://hub.docker.com/repository/docker/mohassan844/tmdb_app/general
 
-    and you can take a look at ci pipeline here https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/app_ci.yml
+    and you can take a look at the ci pipeline here https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/app_ci.yml
 
-###### Taske 2 ######
+###### Task 2 ######
 Step 1:- create infrastructure
 
-    First i need to create infrastructure and configure it, so i used terraform for that in folder "terraform".
-    creates all infra requirmets AWS(VPC,subnets,EC2,SG,KeyPair,...) and used variable file to path my own values.
-    in EC2 creation i installed docker and docker-compose by start-up script in file (terraform/user_data.sh).
+    First I needed to create infrastructure and configure it, so I used Terraform for that in folder "terraform".
+    creates all infra requirements AWS(VPC,subnets,EC2,SG,KeyPair,...) and used variable file to path my own values.
+    in EC2 creation I installed Docker and Docker-compose by start-up script in file (terraform/user_data.sh).
     Notes:-
-        i used my own public_key in variables file to create KeyPair.
-        i uploaded private key with repo to you can acces EC2 but in Deploy stage i use github secrets.
+        I used my own public_key in the variables file to create KeyPair.
+        I uploaded a private key with repo to you can access EC2 but in the Deploy stage I used GitHub secrets.
 
-    all above steps was done by github workflow(.github/workflows/terraform.yml) link https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/Terraform.yml
+    all above steps was done by GitHub workflow(.github/workflows/terraform.yml) link https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/Terraform.yml
 
 Step 2:- Deploy app
 
-    i created docker compose to run myapp and nginx (as a reverse proxy) that can server multiple containers and created customconfiguration to it (if you want to add domain names or any thing else) in folder (nginx/reverseproxy.conf).
+    I created docker-compose.yml to run myapp and nginx (as a reverse proxy) that can server multiple containers and created custom configuration to it (if you want to add domain names or anything else) in folder (nginx/reverseproxy.conf).
 
-    i used github/workflows to can get all ip's of EC2 that will run app and store them in inventory file, then i created ansible playbook to copy docker-compose.yml and reverseproxy.conf files to those ip's and then start containers.
+    I used GitHub/workflows to can get all IP's of EC2 that will run the app and store them in an inventory file, then I created an ansible playbook to copy docker-compose.yml and reverseproxy.conf files to those IPs and then start containers.
 
-    all that done by github workflow(.github/workflows/deploy.yml) link https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/deploy.yml
+    all that done by GitHub workflow(.github/workflows/deploy.yml) link https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/deploy.yml
 
 ###### Some of Taske 4 ######
 
-    i created key pairs and uploded them in repo (private_key,public_key.pem) also i used then in auto create EC2 KeyPair and attach it to all EC2's automaticaly.
+    I created key pairs and uploaded them in the repo (private_key,public_key.pem) also I used them in auto-created EC2 KeyPair and attached it to all EC2s automatically.
 
-    - regarding to monitor app and trigger restart services, maybe we can use Prometheus and grafana for monitoring app and machine.
-        also we can write bash script to check status for app url, if it is not respobding, it will restart app by 
+    - regarding to monitor the app and triggering restart services, maybe we can use Prometheus and Grafana for monitoring app and machine.
+        also, we can write a bash script to check the status of the app URL, if it is not responding, it will restart the app by 
         "docker-compose down" then "docker-compose up -d" 
-
 
 ###### Critical Thinking Questions ######
  
 Question Number 2:- N VMs
-    we can use somthing like i used in taske 2 to get all IP's of VMs first and store IP's in file,then write ansible playbook to copy your configration file or your updated app to VMs and restart services.
-    after playbook run you can see all VM's that successed or failed.
+    we can use something like I used in Task 2 to get all IPs of the VMs first and store IPs in file, then write an ansible playbook to copy your configuration file or your updated app to VMs and restart services.
+    after the playbook run you can see all VMs that succeeded or failed.
+
+
+-----------
+Thanks Very much, and I hope to see you in a technical interview soon.
+
+Mohamed Hassan
+
+
