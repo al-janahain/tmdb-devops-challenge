@@ -1,7 +1,7 @@
 ---
 - name: Deploy Docker Compose application
   hosts: webservers
-  become: yes
+  become: no
   vars:
     compose_file_path: /home/ec2-user/docker-compose.yml
     reverseproxy_path: /home/ec2-user/reverseproxy.conf
