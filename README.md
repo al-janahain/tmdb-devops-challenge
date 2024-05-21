@@ -41,7 +41,7 @@ Step 2:- Deploy app
     all that done by GitHub workflow(.github/workflows/deploy.yml) link https://github.com/al-janahain/tmdb-devops-challenge/actions/workflows/deploy.yml
 
 
-    you can chech app websit at http://107.20.9.82/ 
+    you can chech app websit at http://3.87.244.221/
 
 ###### Some of Taske 4 ######
 
